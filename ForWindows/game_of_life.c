@@ -22,7 +22,7 @@ int main() {
         printf("Please, set the speed of steps: ");
         scan = (scanf("%d%c", &speed, &scanChar));
         if (scan == 2 && scanChar == '\n' && (speed > 0 && speed <= 1000)) {
-            while (!kbhit()) { // Пиздец ебаный.
+            while (!kbhit()) {
                 display(grid);
                 update(grid);
                 Sleep(speed);
