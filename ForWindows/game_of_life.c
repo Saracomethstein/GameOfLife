@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <Windows.h>
+#include <windows.h>
 #include <conio.h>
 
 #define ROWS 25
@@ -11,38 +11,29 @@ void display(int **grid);
 void update(int **grid);
 void memoryCleaner(int **grid);
 void gotoxy(int x, int y);
+int menu(int **grid);
 
-int main(int argc, char *argv[]) {
-    if ((argc >= 2 && fopen(argv[1], "rt"))) {
-        int n;
-        char c;
-        int **grid = (int **)malloc(ROWS * sizeof(int *));
-
-        FILE *fptr = fopen(argv[1], "rt");
-
-        for (int i = 0; i < ROWS; i++) {
-            grid[i] = (int *)malloc(COLS * sizeof(int));
-        }
-
-        initialize(grid, fptr);
-
+int main() {
+    int speed, scan;
+    char scanChar;
+    int **grid = (int **)malloc(ROWS * sizeof(int *));
+    
+    if(menu(grid) != 1){
         printf("Please, set the speed of steps: ");
-        if (scanf("%d%c", &n, &c) == 2 && c == '\n' && (n > 0 && n <= 1000)) {
-            while (1) {
+        scan = (scanf("%d%c", &speed, &scanChar));
+        if (scan == 2 && scanChar == '\n' && (speed > 0 && speed <= 1000)) {
+            while (!kbhit()) { // Пиздец ебаный.
                 display(grid);
                 update(grid);
-                Sleep(n);
+                Sleep(speed);
             }
         } else {
             printf("Please, set the correct positive number.");
         }
-
         memoryCleaner(grid);
-
     } else {
-        printf("Sorry, we didn't find such file...");
+        printf("n/a\n");
     }
-
     return 0;
 }
 
@@ -116,4 +107,36 @@ void gotoxy(int x, int y) {
     coord.X = x;
     coord.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+int menu(int **grid){
+    char *FileName;
+    int chose, scan;
+    int flag = 1;
+    char scanChar;
+    printf("Chose map (1-4): ");
+    scan = (scanf("%d%c", &chose, &scanChar));
+    if(scan == 2 && scanChar == '\n' && chose > 0 && chose < 5){
+        if (chose == 1){
+            FileName = "pulsar.txt";
+        } else if (chose == 2) {
+            FileName = "blinker.txt";
+        } else if (chose == 3) {
+            FileName = "spaceship.txt";
+        } else if (chose == 4) {
+            FileName = "gun.txt";
+        }
+
+        FILE *fptr = fopen(FileName, "rt");
+
+        for (int i = 0; i < ROWS; i++) {
+            grid[i] = (int *)malloc(COLS * sizeof(int));
+        }
+        initialize(grid, fptr);
+        flag = 0;
+    } else {
+        flag = 1;
+    }
+
+    return flag;
 }
