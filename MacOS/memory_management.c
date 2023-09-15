@@ -6,3 +6,10 @@ void memoryCleaner(int **grid) {
     }
     free(grid);
 }
+
+void allocate(int **grid){
+    grid = (int **)malloc(ROWS * sizeof(int *));
+    for (int i = 0; i < ROWS; i++) {
+        grid[i] = (int *)malloc(COLS * sizeof(int));
+    }
+}
