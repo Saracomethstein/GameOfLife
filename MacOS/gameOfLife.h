@@ -16,6 +16,6 @@ void update(int **grid);
 void memoryCleaner(int **grid);
 void mem_allocate(int **grid);
 
-void displayMenu();
+void displayMenu(int **grid);
 
 #endif GAME_OF_LIFE_H
