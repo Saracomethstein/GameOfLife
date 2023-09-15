@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define ROWS 25
-#define COLS 80
-
-void initialize(int **grid, FILE *fptr);
-void display(int **grid, int n);
-void update(int **grid);
-void memoryCleaner(int **grid);
+#include "gameOfLife.h"
 
 int main(int argc, char *argv[]) {
     if ((argc >= 2 && fopen(argv[1], "rt"))) {
@@ -41,30 +31,6 @@ int main(int argc, char *argv[]) {
     }
 
     return 0;
-}
-
-void initialize(int **grid, FILE *fptr) {
-    char symbol;
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = -1; j < COLS; j++) {
-            symbol = fgetc(fptr);
-            if (symbol != '\0' && symbol != '\n' && symbol != ' ') {
-                grid[i][j] = symbol - 48;
-            }
-        }
-    }
-}
-
-void display(int **grid, int n) {
-    system("clear");
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            printf("%c", grid[i][j] ? 'O' : ' ');
-        }
-        printf("\n");
-    }
-    usleep(n * 1000);
 }
 
 void update(int **grid) {
@@ -100,11 +66,4 @@ void update(int **grid) {
             grid[i][j] = newGrid[i][j];
         }
     }
-}
-
-void memoryCleaner(int **grid) {
-    for (int i = 0; i < ROWS; i++) {
-        free(grid[i]);
-    }
-    free(grid);
 }
