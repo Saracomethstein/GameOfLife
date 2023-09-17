@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
         grid = memoryAllocate(grid);
         initialize(grid, fptr);
         displayMenu(grid);
-        // memoryCleaner(grid);
+        memoryCleaner(grid);
         fclose(fptr);
     } else {
         printf("Sorry, we didn't find such file...");
