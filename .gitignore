@@ -1,0 +1,4 @@
+.DS_Store
+.idea/Game_of_life.iml
+CMakeLists.txt
+cmake-build-debug/

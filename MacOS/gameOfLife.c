@@ -1,14 +1,14 @@
-#include "gameOfLife.h"
+#include "headers/gameOfLife.h"
 
 int main(int argc, char *argv[]) {
     if ((argc >= 2 && fopen(argv[1], "rt"))) {
-        int **grid;
+        int **grid = NULL;
         FILE *fptr = fopen(argv[1], "rt");
 
-        mem_allocate(grid);
+        grid = memoryAllocate(grid);
         initialize(grid, fptr);
         displayMenu(grid);
-        memoryCleaner(grid);
+        // memoryCleaner(grid);
         fclose(fptr);
     } else {
         printf("Sorry, we didn't find such file...");

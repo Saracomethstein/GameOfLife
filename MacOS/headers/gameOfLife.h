@@ -14,7 +14,7 @@ void initialize(int **grid, FILE *fptr);
 void display(int **grid, int n);
 void update(int **grid);
 void memoryCleaner(int **grid);
-void mem_allocate(int **grid);
+int **memoryAllocate(int **grid);
 
 void displayMenu(int **grid);
 
