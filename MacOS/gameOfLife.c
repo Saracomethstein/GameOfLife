@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
         memoryCleaner(grid);
         fclose(fptr);
     } else {
+        printf("\033[0;31m");
         printf("Sorry, we didn't find such file...");
     }
     return 0;
