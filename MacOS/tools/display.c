@@ -1,6 +1,6 @@
 #include "../headers/gameOfLife.h"
 
-void display(int **grid, int n) {
+void display(int speed, int **grid) {
     system("clear");
     printf("\033[0;32m");
     for (int i = 0; i < ROWS; i++) {
@@ -9,5 +9,5 @@ void display(int **grid, int n) {
         }
         printf("\n");
     }
-    usleep(n * 1000);
+    usleep(speed * 1000);
 }

@@ -11,11 +11,13 @@
 #define COLS 80
 
 void initialize(int **grid, FILE *fptr);
-void display(int **grid, int n);
+void display(int speed, int **grid);
 void update(int **grid);
 void memoryCleaner(int **grid);
 int **memoryAllocate(int **grid);
 
-void displayMenu(int **grid);
+void displayGrid(int speed, int **grid);
+int* printMenu();
+char *mapSelect(int map, char *file);
 
-#endif GAME_OF_LIFE_H
+#endif
