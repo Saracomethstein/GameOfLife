@@ -10,25 +10,26 @@ all: game
 game: $(SOURCES)
 	$(CC) $(CFLAGS) $(SOURCES) -o out/game
 
-game_of_life.o: game_of_life.c game_of_life.h
-	$(CC) $(CFLAGS) -c game_of_life.c
+game_of_life.o: $(GAME)/game_of_life.c $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(GAME)/game_of_life.c
 
-display.o: display.c game_of_life.h
-	$(CC) $(CFLAGS) -c display.c
+display.o: $(PROP)/display.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/display.c
 
-gotoxy.o: gotoxy.c game_of_life.h
-	$(CC) $(CFLAGS) -c gotoxy.c
+gotoxy.o: $(PROP)/gotoxy.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/gotoxy.c
 
-initialize.o: initialize.c game_of_life.h
-	$(CC) $(CFLAGS) -c initialize.c
+initialize.o: $(PROP)/initialize.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/initialize.c
 
-memoryCleaner.o: memoryCleaner.c game_of_life.h
-	$(CC) $(CFLAGS) -c memoryCleaner.c
+memoryCleaner.o: $(PROP)/memoryCleaner.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/memoryCleaner.c
 
-menu.o: menu.c game_of_life.h
-	$(CC) $(CFLAGS) -c menu.c
+menu.o: $(PROP)/menu.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/menu.c
 
-update.o: update.c game_of_life.h
-	$(CC) $(CFLAGS) -c update.c
-
-clear: rm -f *.o
+update.o: $(PROP)/update.c  $(HEAD)/game_of_life.h
+	$(CC) $(CFLAGS) -c $(PROP)/update.c
+	
+clean:
+	rm *.o
